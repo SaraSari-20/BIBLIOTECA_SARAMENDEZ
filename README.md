@@ -56,8 +56,8 @@ Antes de ejecutar la aplicación, debes configurar las credenciales de tu base d
 2. Reemplaza `USUARIO` y `CLAVE` con tus credenciales de MySQL:
 
 ```java
-private static final String user = "tu_usuario_mysql";
-private static final String pass = "tu_contraseña_mysql";
+private static final String user = "USUARIO";
+private static final String pass = "CLAVE";
 ```
 
 **Ejemplo:**
