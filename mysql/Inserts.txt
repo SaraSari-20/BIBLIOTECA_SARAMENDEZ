@@ -1,0 +1,33 @@
+-- ============================================
+-- SCRIPT DE DATOS INICIALES
+-- ============================================
+
+-- 1. INSERTAR CATEGORÍAS
+INSERT INTO categorias (nombre) VALUES
+('Novela'),
+('Ciencia'),
+('Historia'),
+('Filosofía'),
+('Tecnología');
+
+-- 2. INSERTAR AUTORES
+INSERT INTO autores (nombre, nacionalidad) VALUES
+('Gabriel García Márquez', 'Colombia'),
+('Isaac Asimov', 'Rusia/EE.UU.'),
+('Yuval Noah Harari', 'Israel'),
+('Friedrich Nietzsche', 'Alemania'),
+('Alan Turing', 'Reino Unido');
+
+-- 3. INSERTAR USUARIO ADMINISTRADOR
+INSERT INTO usuarios (username, password, rol) VALUES
+('USER', 'hash_aqui', 'Administrador');
+
+-- 4. INSERTAR LIBROS (OPCIONAL)
+INSERT INTO libros (titulo, autor_id, categoria_id, anio, stock) VALUES
+('Cien años de soledad', 1, 1, 1967, 'disponible'),
+('Fundación', 2, 2, 1951, 'disponible'),
+('Sapiens', 3, 3, 2011, 'disponible'),
+('Así habló Zaratustra', 4, 4, 1883, 'disponible'),
+('Computing Machinery', 5, 5, 1950, 'disponible');
+
+

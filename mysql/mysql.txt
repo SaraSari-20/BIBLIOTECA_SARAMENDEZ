@@ -1,0 +1,71 @@
+-- ============================================
+-- SCRIPT DE CONFIGURACIÓN DE BASE DE DATOS
+-- ============================================
+
+-- 1. CREAR LA BASE DE DATOS
+CREATE DATABASE IF NOT EXISTS Biblioteca;
+
+-- 2. USAR LA BASE DE DATOS
+USE Biblioteca;
+
+-- 3. OTORGAR PERMISOS AL USUARIO
+-- Nota: Ejecutar con usuario root
+GRANT ALL PRIVILEGES ON Biblioteca.* TO 'USER'@'%';
+FLUSH PRIVILEGES;
+
+-- ============================================
+-- CREACIÓN DE TABLAS
+-- ============================================
+
+-- 4. TABLA USUARIOS
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    rol ENUM('Administrador', 'Desarrollador', 'Usuario') NOT NULL,
+    estado ENUM('activo', 'inactivo') DEFAULT 'activo'
+);
+
+-- 5. TABLA ACERCA_DE (Información de usuario)
+CREATE TABLE acerca_de (
+    usuario_id INT PRIMARY KEY,
+    numero_carne VARCHAR(50),
+    nombres VARCHAR(150),
+    foto_path VARCHAR(255),
+    proyecto VARCHAR(150),
+    version VARCHAR(50),
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+);
+
+-- 6. TABLA AUTORES
+CREATE TABLE autores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(150) NOT NULL,
+    nacionalidad VARCHAR(100)
+);
+
+-- 7. TABLA CATEGORÍAS
+CREATE TABLE categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+-- 8. TABLA LIBROS
+CREATE TABLE libros (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(200) NOT NULL,
+    autor_id INT,
+    categoria_id INT,
+    anio YEAR,
+    stock ENUM('disponible', 'prestado', 'agotado') DEFAULT 'disponible',
+    FOREIGN KEY (autor_id) REFERENCES autores(id),
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+);
+
+-- ============================================
+-- VERIFICACIÓN
+-- ============================================
+SHOW TABLES;
+
+
